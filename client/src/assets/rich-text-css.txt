@@ -1,15 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
-@import "tailwindcss"; /* pasted ffrom documentation */
-* {
-   font-family: "Outfit", sans-serif;
-}
-::-webkit-scrollbar {
-  display: none;
-}
-
-@theme {
-  --color-primary: #5044E5;
-}
 .rich-text { font-size: 15px;  }
 
 .rich-text p { margin-bottom: 16px; color: #292929; }
