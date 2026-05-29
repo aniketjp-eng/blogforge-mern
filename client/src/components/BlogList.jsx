@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { blog_data, blogCategories } from '../assets/assets'
 import { motion } from "motion/react" //pasted from doc
 import { BlogCard } from './BlogCard';
-
+    
 export const BlogList = () => {
   const [menu, setMenu] = useState("All");
   return (

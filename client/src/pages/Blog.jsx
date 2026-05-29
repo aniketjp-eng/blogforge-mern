@@ -1,22 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { assets, blog_data } from "../assets/assets";
+import { assets, blog_data, comments_data } from "../assets/assets";
 import { Navbar } from "../components/Navbar";
 import moment from "moment";
 
 export const Blog = () => {
   const { id } = useParams();
   const [data, setData] = useState(null);
-  // const fetchBlogData = async ()=> {
-  //   blog_data.find(item => item._id == id)
-  //   setData(data)
-  // }
+  const [comments, setComments] = useState([]);
+
   const fetchBlogData = async () => {
     const blog = blog_data.find((item) => item._id == id);
     setData(blog);
   };
+  const fetchComments = async () =>  {
+    setComments(comments_data);
+  }
   useEffect(() => {
-    fetchBlogData();
+    fetchBlogData()
+    fetchComments()
   }, []);
   return data ? (
     <div className="relative">
@@ -58,7 +60,19 @@ export const Blog = () => {
 
   {/* Comments Section */}
   <div className='mt-14 mb-10 max-w-3xl mx-auto'>
-    <p>Comments</p>
+    <p>Comments({comments.length})</p>
+    <div className="flex flex-col gap-4">
+          {comments.map((item, index) => (
+            <div key={index} className='relative bg-primary/2 border border-primary/5 max-w-xl p-4
+            rounded text-gray-600
+            '>
+              <div>
+                <img src={assets.user_icon} className="w-6" alt="" />
+                <p className="font-medium">{item.name}</p>
+              </div>
+               </div>
+          ) )}
+    </div>
   </div>
 </div>
 
