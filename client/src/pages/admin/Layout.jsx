@@ -1,6 +1,7 @@
 import React from 'react'
 import { assets } from '../../assets/assets'
 import { useNavigate, Outlet } from 'react-router-dom'
+import { Sidebar } from '../../components/admin/Sidebar'
 
 const Layout = () => {
   const navigate = useNavigate()
@@ -10,7 +11,8 @@ const Layout = () => {
   }
 
   return (
-    <div>
+    <> 
+    <div className='flex items-center justify-between py-2 h-[70px] px-4 sm:px-12 border-b border-gray-200'>
       <img
         src={assets.logo}
         alt=""
@@ -25,6 +27,13 @@ const Layout = () => {
         Logout
       </button>
     </div>
+     <div className='flex h-[calc(100vh-70px)]'>
+          <div>
+            <Sidebar/>
+          </div>
+          <Outlet />
+     </div>
+    </>
   )
 }
 
