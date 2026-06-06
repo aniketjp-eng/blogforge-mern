@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const blogSchema = new Mongoose.Schema( //schema screations:
+const blogSchema = new mongoose.Schema( //schema screations:
 //"Every blog in database should follow these rules"
   {
     title: { type: String, require: true },

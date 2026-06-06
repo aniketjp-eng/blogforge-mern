@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken'
-export const adminLogin = async (req, res) => {
+
+const adminLogin = async (req, res) => {
   try {
     const { email, password } = req.body;
     if (
@@ -15,3 +16,5 @@ export const adminLogin = async (req, res) => {
         res.json({sucess: true, message: error.message})
   }
 };
+
+export default adminLogin;
