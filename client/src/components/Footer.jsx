@@ -7,9 +7,7 @@ function Footer() {
         <div className='flex flex-col md:flex-row items-start justify-between gap-10 py-10 border-b border-gray-500/30 text-gray-500'>
             <div>
                 <img src={assets.logo} alt="logo" className='w-32 sm:w-44' />
-                <p className='max-w-[410px] mt-6' >Lorem ipsum dolor sit amet consectetur, adipisicing 
-                    elit. Rerum unde quaerat eveniet cumque accusamus 
-                    atque qui error quo enim fugiat?</p>
+                <p className='max-w-[410px] mt-6' >BlogForge is a platform where ideas turn into stories. Explore blogs on technology, innovation, finance, and personal development written to inform, inspire, and empower.</p>
             </div>
             <div className='flex flex-wrap justify-between w-full md:w-[45%] gap-5'>
                 {footer_data.map((section, index) =>(
@@ -28,7 +26,7 @@ function Footer() {
                 ))}
             </div>
         </div>
-        <p className='py-4 text-center text-sm md:text-base text-gray-500/80'>Copyright 2025 © QuickBlog GreatStack - All Right Reserved.</p>
+        <p className='py-4 text-center text-sm md:text-base text-gray-500/80'>Copyright 2026 © BlogForge - All Right Reserved.</p>
     </div>
   )
 }

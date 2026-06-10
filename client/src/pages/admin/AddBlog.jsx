@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import { assets, blogCategories } from "../../assets/assets";
+import { assets, blogCategories } from "../../assets/assets.js";
 import Quill from "quill";
 import "quill/dist/quill.snow.css";
 import { useAppContext } from "../../context/AppContext";
@@ -55,25 +55,6 @@ const AddBlog = () => {
     }
   };
 
-   const generateContent = async () => {
-    if (!title) return toast.error("Please enter a title");
-
-    try {
-      setLoading(true);
-      const { data } = await axios.post("/api/blog/generate", {
-        prompt: title,
-      });
-      if (data.success) {
-        quillRef.current.root.innerHTML = marked(data.content);
-      } else {
-        toast.error(data.message);
-      }
-    } catch (error) {
-      toast.error(error.message);
-    } finally {
-      setLoading(false);
-    }
-  };
   useEffect(() => {
     // Initiate Quill only once
     if (!quillRef.current && editorRef.current) {
@@ -122,17 +103,6 @@ const AddBlog = () => {
         <p className="mt-4">Blog Description</p>
         <div className="max-w-lg h-74 pb-16 sm:pb-10 pt-2 relative">
           <div ref={editorRef}></div>
-          <button
-          disabled={loading}
-            type="button"
-            onClick={generateContent}
-            className="absolute bottom-1 
-            right-2 ml-2 text-xs text-white 
-            bg-black/70 px-4 py-1.5 rounded hover:underline 
-            cursor-pointer"
-          >
-            Generate with AI
-          </button>
         </div>
         <p className="mt-4">Blog category</p>
         <select
