@@ -7,7 +7,7 @@ import AddBlog from './pages/admin/AddBlog';
 import ListBlog from './pages/admin/ListBlog';
 import Comments from './pages/admin/Comments';
 import Layout from './pages/admin/Layout';
-import Login from './components/Admin/Login';
+import Login from './components/admin/Login';
 import 'quill/dist/quill.snow.css';
 import { Toaster } from 'react-hot-toast';
 import { useAppContext } from './context/AppContext';
