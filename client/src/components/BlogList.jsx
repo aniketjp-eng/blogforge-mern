@@ -27,8 +27,8 @@ export const BlogList = () => {
           <div key={item} className="relative">
             <button
               onClick={() => setMenu(item)}
-              className={`cursor-pointer text-gray-500 ${
-                menu == item && "text-white px-4 pt-0.5"
+              className={`cursor-pointer px-4 pt-0.5 text-gray-500 ${
+                menu === item ? "text-white" : ""
               }`}
             >
               {item}
