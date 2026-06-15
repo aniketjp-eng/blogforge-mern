@@ -4,6 +4,7 @@ import cors from "cors";
 import connectDb from "./configs/db.js";
 import adminRouter from "./routes/adminRoutes.js";
 import blogRouter from "./routes/blogRoutes.js";
+import aiRouter from "./routes/aiRoute.js";
 
 const app = express();
 
@@ -14,6 +15,9 @@ app.use(cors());
 
 app.use(express.json());
 //converts json formate data into js objects
+
+app.use("/api/ai", aiRouter);
+
 
 // Routes
 app.get(
