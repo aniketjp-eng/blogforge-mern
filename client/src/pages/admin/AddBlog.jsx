@@ -4,12 +4,12 @@ import Quill from "quill";
 import "quill/dist/quill.snow.css";
 import { useAppContext } from "../../context/AppContext";
 import toast from "react-hot-toast";
-import { marked } from 'marked';
+import { marked } from "marked";
 
 const AddBlog = () => {
-  const { axios } = useAppContext()
-  const [isAdding, setIsAdding] = useState(false)
-  const [loading, setLoading] = useState(false)
+  const { axios } = useAppContext();
+  const [isAdding, setIsAdding] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const editorRef = useRef(null);
   const quillRef = useRef(null);
@@ -19,7 +19,45 @@ const AddBlog = () => {
   const [subTitle, setSubTitle] = useState("");
   const [category, setCategory] = useState("Startup");
   const [isPublished, setIsPublished] = useState(false);
-   const onSubmitHandler = async (e) => {
+
+  // ---------------- test --------------------
+// console.log(data) ----> it was here only --------------------------> 
+const enhanceWithAI = async () => {
+
+  try {
+
+    setLoading(true);
+
+    const rawContent =
+      quillRef.current.root.innerHTML;
+
+    const { data } = await axios.post(
+      "/api/ai/enhance-content",
+      {
+        content: rawContent
+      }
+    );
+
+    if (data.success) {
+
+      quillRef.current.root.innerHTML =
+        data.enhancedContent;
+
+    }
+
+  } catch (error) {
+
+    console.log(error);
+
+  } finally {
+
+    setLoading(false);
+
+  }
+
+};
+  // -------------- test end ---------------
+  const onSubmitHandler = async (e) => {
     try {
       e.preventDefault();
       setIsAdding(true);
@@ -101,9 +139,23 @@ const AddBlog = () => {
           value={subTitle}
         />
         <p className="mt-4">Blog Description</p>
+        {/* ------------ test -------------- */}
         <div className="max-w-lg h-74 pb-16 sm:pb-10 pt-2 relative">
           <div ref={editorRef}></div>
+          {loading && (
+            <div className="absolute right-0 top-0 bottom-0 left-0 flex items-center justify-center bg-black/10 mt-2">
+              <div className="w-8 h-8 rounded-full border-2 border-t-white animate-spin"></div>
+            </div>
+          )}
+          <button
+            type="button"
+            onClick={enhanceWithAI} 
+            className="absolute bottom-1 right-2 ml-2 text-xs text-white bg-black/70 px-4 py-1.5 rounded hover:underline cursor-pointer"
+          >
+            Generate with AI
+          </button>
         </div>
+        {/* -------------- test end --------------- */}
         <p className="mt-4">Blog category</p>
         <select
           onChange={(e) => setCategory(e.target.value)}
@@ -122,6 +174,7 @@ const AddBlog = () => {
             );
           })}
         </select>
+
         <div className="flex gap-2 mt-4">
           <p>Publish Now</p>
           <input
@@ -133,11 +186,11 @@ const AddBlog = () => {
         </div>
 
         <button
-            disabled={isAdding}
+          disabled={isAdding}
           type="submit"
           className="mt-8 w-40 h-10 bg-primary text-white rounded cursor-pointer text-sm"
         >
-        {isAdding ? "Adding..." : "Add Blog"}
+          {isAdding ? "Adding..." : "Add Blog"}
         </button>
       </div>
     </form>

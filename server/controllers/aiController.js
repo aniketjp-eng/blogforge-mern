@@ -1,5 +1,4 @@
-import genAI from "../configs/gemini";
-
+import genAI from "../configs/gemini.js";
 export const enhanceContent = async (req, res) => {
   try {
 
