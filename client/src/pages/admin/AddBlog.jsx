@@ -30,6 +30,7 @@ const enhanceWithAI = async () => {
 
     const rawContent =
       quillRef.current.root.innerHTML;
+console.log("Raw Content -------------------------> " + rawContent);
 
     const { data } = await axios.post(
       "/api/ai/enhance-content",
@@ -42,6 +43,8 @@ const enhanceWithAI = async () => {
 
       quillRef.current.root.innerHTML =
         data.enhancedContent;
+        console.log("generated data ------------------> " +  data.enhancedContent);
+        
 
     }
 
