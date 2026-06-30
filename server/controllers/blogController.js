@@ -79,6 +79,12 @@ export const getBlogById = async (req, res) => {
   }
 };
 
+export const editPostById = async (req, res) => {
+  const { blogId } = req.params;
+  const blog = await Blog.findById(blogId);
+  console.log( req.params);
+}
+
 export const deleteBlogById = async (req, res) => {
   try {
     const { id } = req.body;

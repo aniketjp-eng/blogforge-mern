@@ -17,6 +17,11 @@ export const BlogList = () => {
         blog.category.toLowerCase().includes(input.toLowerCase()),
     );
   };
+
+  // ----------------- test ----------------
+  const editPost = () => {
+    //
+  }
   return (
     <div>
       <div

@@ -7,7 +7,7 @@ const BlogTableItem = ({ blog, fetchBlogs, index }) => {
   const { title, createdAt } = blog;
   const BlogDate = new Date(createdAt);
 
-  const { axios } = useAppContext();
+const { axios, navigate } = useAppContext();
 
   const deleteBlog = async () => {
     const confirm = window.confirm(
@@ -25,6 +25,10 @@ const BlogTableItem = ({ blog, fetchBlogs, index }) => {
     } catch (error) {
       toast.error(error.message);
     }
+  };
+
+  const editBlog = async () => {
+       navigate(`/admin/editBlog/${blog._id}`);
   };
 
   const togglePublish = async () => {
@@ -68,6 +72,7 @@ const BlogTableItem = ({ blog, fetchBlogs, index }) => {
           alt=""
           onClick={deleteBlog}
         />
+        <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition  hover:bg-blue-100"   onClick={editBlog}>Edit</button>
       </td>
     </tr>
   );
